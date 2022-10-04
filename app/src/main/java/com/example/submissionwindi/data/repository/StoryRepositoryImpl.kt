@@ -6,6 +6,7 @@ import com.example.submissionwindi.data.source.remote.request.LoginRequest
 import com.example.submissionwindi.data.source.remote.request.RegisterRequest
 import com.example.submissionwindi.data.source.remote.response.LoginResponse
 import com.example.submissionwindi.data.source.remote.response.RegisterResponse
+import com.example.submissionwindi.data.source.remote.response.Story
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -26,5 +27,9 @@ class StoryRepositoryImpl(
                 )
                 return@map it
             }
+    }
+
+    override fun getStory(): Flow<List<Story>> {
+        return storyDataSource.getStory()
     }
 }

@@ -4,6 +4,7 @@ import com.example.submissionwindi.data.source.remote.request.LoginRequest
 import com.example.submissionwindi.data.source.remote.request.RegisterRequest
 import com.example.submissionwindi.data.source.remote.response.LoginResponse
 import com.example.submissionwindi.data.source.remote.response.RegisterResponse
+import com.example.submissionwindi.data.source.remote.response.Story
 import com.example.submissionwindi.data.source.remote.route.StoryService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -27,6 +28,14 @@ class StoryDataSourceImpl (private val storyService : StoryService) : StoryDataS
                 storyService.login(
                     loginRequest = loginRequest
                 )
+            )
+        }.flowOn(Dispatchers.IO)
+    }
+
+    override fun getStory(): Flow<List<Story>> {
+        return flow {
+            emit(
+                storyService.listStory().listStory
             )
         }.flowOn(Dispatchers.IO)
     }
